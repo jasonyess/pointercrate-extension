@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Pointercrate Pro",
+  "version": "1.0.0",
+  "description": "An extension to enhance the experience of pointercrate.com",
+  "icons": {
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://pointercrate.com/*"],
+      "js": ["dist/statsviewer.bundle.js"],
+      "run_at": "document_end",
+      "world": "MAIN"
+    }
+  ],
+  "host_permissions": [
+    "https://pointercrate.com/*"
+  ]
+}
