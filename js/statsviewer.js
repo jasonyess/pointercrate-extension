@@ -63,7 +63,12 @@ function generateSortedDemons(container, records, demons) {
             container.innerHTML += " - "
         })
     }
-    container.removeChild(container.lastChild)
+    if (container.lastChild !== null) {
+        container.removeChild(container.lastChild)
+    }
+    else {
+        container.innerHTML = "None"
+    }
 }
 
 // this code could use some cleaning
