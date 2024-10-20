@@ -1,0 +1,44 @@
+[
+    {
+        "name": "The Yangire",
+        "projection": 0,
+        "placement_time": 1730203200,
+        "video": "https://youtu.be/V3FjIorIfWg",
+        "thumbnail": "https://i.ytimg.com/vi/V3FjIorIfWg/mqdefault.jpg"
+    },
+    {
+        "name": "Violet Illusions",
+        "projection": 3,
+        "placement_time": 1730203200,
+        "video": "https://youtu.be/A73-pvewH5I",
+        "thumbnail": "https://i.ytimg.com/vi/A73-pvewH5I/mqdefault.jpg"
+    },
+    {
+        "name": "Spectre",
+        "projection": 0,
+        "placement_time": 1731326400,
+        "video": "https://youtu.be/MzsSLKJrLSI",
+        "thumbnail": "https://i.ytimg.com/vi/MzsSLKJrLSI/mqdefault.jpg"
+    },
+    {
+        "name": "BOOBAWAMBA",
+        "projection": 0,
+        "placement_time": 1731412800,
+        "video": "https://youtu.be/20fYiqLAo_E",
+        "thumbnail": "https://i.ytimg.com/vi/20fYiqLAo_E/mqdefault.jpg"
+    },
+    {
+        "name": "Deep Bass",
+        "projection": 3,
+        "placement_time": 1731412800,
+        "video": "https://youtu.be/5uu8xXgz_4s",
+        "thumbnail": "https://i.ytimg.com/vi/5uu8xXgz_4s/mqdefault.jpg"
+    },
+    {
+        "name": "Waterfall",
+        "projection": 0,
+        "placement_time": 1731931200,
+        "video": "https://youtu.be/VKuVdqneG9Y",
+        "thumbnail": "https://i.ytimg.com/vi/VKuVdqneG9Y/mqdefault.jpg"
+    }
+]
