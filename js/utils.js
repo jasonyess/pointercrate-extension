@@ -47,6 +47,8 @@ export function createCheckbox(name, id, checked) {
 // wtf am i doing
 // this lacks filtering but i dont need it for now
 export function createDropdown(items, defaultIndex, id) {
+    items = items.slice()
+
     const container = document.createElement("div")
     container.className = "dropdown-menu js-search no-stretch"
     container.id = id
@@ -78,11 +80,11 @@ export function createDropdown(items, defaultIndex, id) {
         item.appendChild(itemValueText)
 
         // Change selected variable when item is clicked
-        // TODO: this will dispatch the `selectchange` again, even if the value is the same. fix this
+        // TODO: this will dispatch the `selecteditemchange` again, even if the value is the same. fix this
         item.addEventListener("click", () => {
             selected = item.getAttribute("data-value")
             input.value = selected
-            input.dispatchEvent(new Event("selectchange")) // `selectchange` event will alert any event listeners when a new value was selected (the name could be better)
+            input.dispatchEvent(new Event("selecteditemchange")) // `selecteditemchange` event will alert any event listeners when a new value was selected (the name could be better)
         })
 
         return item

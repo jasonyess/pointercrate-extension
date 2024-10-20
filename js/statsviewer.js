@@ -1,13 +1,18 @@
 import { createPanel, createDropdown, waitForObject } from "./utils.js"
 
+const sortingModes = [
+    "Alphabetical",
+    "Position"
+]
+
 function createSortingOptionsPanel() {
     const panelContainer = document.querySelector("aside.right")
     const newPanel = createPanel("Sorting Options", "The method of sorting a player's demons.")
 
-    const sortingModeDropdown = createDropdown([
-        "Alphabetical",
-        "Position"
-    ], 0, "demons-sort-dropdown")
+    const sortingModeDropdown = createDropdown(sortingModes, localStorage.getItem("profileDemonSortingMode") ?? 0, "demons-sort-dropdown")
+    sortingModeDropdown.querySelector("input").addEventListener("selecteditemchange", () => { // When a new item is selected, save its value
+        localStorage.setItem("profileDemonSortingMode", Number(sortingModes.indexOf(sortingModeDropdown.querySelector("input").value)))
+    })
 
     newPanel.appendChild(sortingModeDropdown)
 
@@ -86,9 +91,6 @@ function main() {
     createSortingOptionsPanel()
 
     const sortDropdownInput = document.querySelector("#demons-sort-dropdown").querySelector("input")
-    sortDropdownInput.addEventListener("selectchange", () => {
-        sortProfileDemons(sortDropdownInput.value)
-    })
 
     statsViewer.addSelectionListener(() => individualSelectionListener(sortDropdownInput.value))
 }
