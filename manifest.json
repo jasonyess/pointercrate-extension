@@ -9,7 +9,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://pointercrate.com/*"],
+      "matches": ["https://pointercrate.com/demonlist/statsviewer/"],
       "js": ["dist/statsviewer.bundle.js"],
       "run_at": "document_end",
       "world": "MAIN"
