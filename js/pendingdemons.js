@@ -40,12 +40,6 @@ function generateDemons(demons, container) {
         videoThumbnail.setAttribute("data-property", "background-image")
         videoThumbnail.setAttribute("data-property-value", `url('${thumbnail}')`)
 
-        let videoAnchor = document.createElement("a")
-        videoAnchor.className = "play"
-        videoAnchor.href = video
-
-        videoThumbnail.appendChild(videoAnchor)
-
         return videoThumbnail
     }
 
