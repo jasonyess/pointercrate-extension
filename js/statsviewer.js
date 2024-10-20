@@ -74,10 +74,22 @@ function sortProfileDemons(mode) {
         setTimeout(() => statsViewer.addSelectionListener(() => individualSelectionListener(mode)), 50)
     }
     else if (mode == "Position") {
-        let sortedRecords = statsViewer.currentObject.records.slice().filter(item => item.progress == 100 && item.status == "approved")
-        sortedRecords.sort((a, b) => a.demon.position - b.demon.position)
+        let sortedBeaten = statsViewer.currentObject.records.slice().filter(item => item.progress == 100 && item.status == "approved")
+        sortedBeaten.sort((a, b) => a.demon.position - b.demon.position)
 
-        generateSortedDemons(document.querySelector("#beaten"), sortedRecords)
+        let sortedCreated = statsViewer.currentObject.created.slice()
+        sortedCreated.sort((a, b) => a.position - b.position)
+
+        let sortedVerified = statsViewer.currentObject.verified.slice()
+        sortedVerified.sort((a, b) => a.position - b.position)
+
+        let sortedPublished = statsViewer.currentObject.published.slice()
+        sortedPublished.sort((a, b) => a.position - b.position)
+
+        generateSortedDemons(document.querySelector("#beaten"), sortedBeaten)
+        generateSortedDemons(document.querySelector("#created"), undefined, sortedCreated)
+        generateSortedDemons(document.querySelector("#verified"), undefined, sortedVerified)
+        generateSortedDemons(document.querySelector("#published"), undefined, sortedPublished)
     }
 }
 
