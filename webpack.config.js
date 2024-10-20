@@ -1,12 +1,13 @@
-const path = require('path')
+const path = require("path")
 
 module.exports = {
   entry: {
-    statsviewer: ['./js/utils.js', './js/statsviewer.js'], // statsviewer bundle
+    statsviewer: ["./js/utils.js", "./js/statsviewer.js"], // statsviewer bundle
+    pendingdemons: ["./js/utils.js", "./js/pendingdemons.js"], // pendingdemons bundle
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
   },
-  mode: 'development',
+  mode: "development",
 }

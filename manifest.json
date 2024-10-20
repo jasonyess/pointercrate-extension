@@ -9,8 +9,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://pointercrate.com/demonlist/statsviewer/"],
+      "matches": ["https://pointercrate.com/demonlist/statsviewer*"],
+      "exclude_matches": ["https://pointercrate.com/demonlist/statsviewer/nations*"],
       "js": ["dist/statsviewer.bundle.js"],
+      "run_at": "document_end",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://pointercrate.com/demonlist/pending*"],
+      "js": ["dist/pendingdemons.bundle.js"],
       "run_at": "document_end",
       "world": "MAIN"
     }

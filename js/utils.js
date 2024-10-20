@@ -1,13 +1,14 @@
-export function createPanel(name, text) {
+export function createPanel(name, text, heading = "h3") {
     const newPanel = document.createElement("section")
     newPanel.className = "panel fade"
     newPanel.style = "overflow: initial"
 
-    const panelName = document.createElement("h3")
+    const panelName = document.createElement(heading)
     panelName.className = "underlined"
     panelName.textContent = name
 
     const panelText = document.createElement("p")
+    panelText.style = "font-size: .8em"
     panelText.textContent = text
 
     // Assemble the created elements
