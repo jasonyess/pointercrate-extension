@@ -12,6 +12,7 @@ function createSortingOptionsPanel() {
     const sortingModeDropdown = createDropdown(sortingModes, localStorage.getItem("profileDemonSortingMode") ?? 0, "demons-sort-dropdown")
     sortingModeDropdown.querySelector("input").addEventListener("selecteditemchange", () => { // When a new item is selected, save its value
         localStorage.setItem("profileDemonSortingMode", Number(sortingModes.indexOf(sortingModeDropdown.querySelector("input").value)))
+        sortProfileDemons(sortingModes[localStorage.getItem("profileDemonSortingMode")])
     })
 
     newPanel.appendChild(sortingModeDropdown)
