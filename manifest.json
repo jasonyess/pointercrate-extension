@@ -20,6 +20,12 @@
       "js": ["dist/pendingdemons.bundle.js"],
       "run_at": "document_end",
       "world": "MAIN"
+    },
+    {
+      "matches": ["https://pointercrate.com/*"],
+      "js": ["js/index.js"],
+      "run_at": "document_end",
+      "world": "MAIN"
     }
   ],
   "host_permissions": [
