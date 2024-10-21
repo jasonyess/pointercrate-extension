@@ -40,5 +40,12 @@
         "placement_date": "November 18",
         "video": "https://youtu.be/VKuVdqneG9Y",
         "thumbnail": "https://i.ytimg.com/vi/VKuVdqneG9Y/mqdefault.jpg"
+    },
+    {
+        "name": "Judgement Knights",
+        "projection": 0,
+        "placement_date": "November 20",
+        "video": "https://youtu.be/tYIjpFU021M",
+        "thumbnail": "https://i.ytimg.com/vi/tYIjpFU021M/mqdefault.jpg"
     }
 ]
