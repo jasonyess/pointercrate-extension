@@ -43,7 +43,7 @@ function generateDemons(demons, container) {
         return videoThumbnail
     }
 
-    const createInfoElement = (name, placement_time, projection, video) => {
+    const createInfoElement = (name, placement_date, projection, video) => {
         const createSubheading = (text) => {
             let subheading = document.createElement("h3")
             subheading.style = "text-align: left"
@@ -67,7 +67,7 @@ function generateDemons(demons, container) {
 
         demonName.appendChild(demonVideoAnchor)
 
-        let demonPlacementTime = createSubheading(`To be placed ${new Date(placement_time * 1000).toLocaleDateString()}`)
+        let demonPlacementTime = createSubheading(`To be placed ${placement_date}`)
         let demonProjection = createSubheading(placementProjections[projection])
 
         // Assemble the created elements
@@ -88,7 +88,7 @@ function generateDemons(demons, container) {
         contentWrapper.style = "align-items: center"
 
         let videoElement = createVideoElement(demon.video, demon.thumbnail)
-        let infoElement = createInfoElement(demon.name, demon.placement_time, demon.projection, demon.video)
+        let infoElement = createInfoElement(demon.name, demon.placement_date, demon.projection, demon.video)
 
         // Assemble the created elements
         contentWrapper.appendChild(videoElement)
@@ -106,7 +106,9 @@ function main() {
     const mainContainer = createMainContainer()
     const demonListContainer = mainContainer.querySelector("main")
 
-    fetch("https://raw.githubusercontent.com/jasonyess/pointercrate-pro/main/live/pending_demons.json") // Fetch JSON of pending demons from the github repo
+    fetch("https://raw.githubusercontent.com/jasonyess/pointercrate-pro/main/live/pending_demons.json", {
+        cache: "no-store"
+    }) // Fetch JSON of pending demons from the github repo
         .then(response => response.json())
         .then(data => {
             console.log(data)
