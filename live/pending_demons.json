@@ -47,5 +47,26 @@
         "placement_date": "November 20",
         "video": "https://youtu.be/tYIjpFU021M",
         "thumbnail": "https://i.ytimg.com/vi/tYIjpFU021M/mqdefault.jpg"
+    },
+    {
+        "name": "Rigel",
+        "projection": 3,
+        "placement_date": "November 24",
+        "video": "https://youtu.be/VmYt32YBpSE",
+        "thumbnail": "https://i.ytimg.com/vi/VmYt32YBpSE/mqdefault.jpg"
+    },
+    {
+        "name": "Scrubbabingo force",
+        "projection": 3,
+        "placement_date": "November 24",
+        "video": "https://youtu.be/eT_izuCxGUU",
+        "thumbnail": "https://i.ytimg.com/vi/eT_izuCxGUU/mqdefault.jpg"
+    },
+    {
+        "name": "Lithium",
+        "projection": 2,
+        "placement_date": "November 24",
+        "video": "https://youtu.be/mvBPeefG-a0",
+        "thumbnail": "https://i.ytimg.com/vi/mvBPeefG/mqdefault.jpg"
     }
 ]
