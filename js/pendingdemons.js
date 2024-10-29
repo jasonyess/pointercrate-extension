@@ -1,4 +1,4 @@
-import { waitForObject, createPanel } from "./utils.js"
+import { waitForObject, createPanel, clearErrorFrame, createMainContainer } from "./utils.js"
 
 const placementProjections = [
     "Projected to be main list",
@@ -6,32 +6,6 @@ const placementProjections = [
     "Unknown projection, could be main or extended",
     "Unknown projection, could be extended or not list worthy"
 ]
-
-function clearErrorFrame() {
-    document.getElementById("error").remove()
-}
-
-function createMainContainer() {
-    const mainContainer = document.createElement("div")
-    mainContainer.className = "flex m-center container"
-
-    const contentContainer = document.createElement("main")
-    contentContainer.style = "max-width: 70%"
-
-    const sideContainer = document.createElement("aside")
-    sideContainer.style = "max-width: 30%"
-
-    // Panels for the side container
-    const brandPanel = createPanel("Pointercrate Pro", "This page is brought to you by Pointercrate Pro. Thank you for using the extension!", "h2")
-    
-    sideContainer.appendChild(brandPanel)
-
-    // Main container
-    mainContainer.appendChild(contentContainer)
-    mainContainer.appendChild(sideContainer)
-
-    return mainContainer
-}
 
 function generateDemons(demons, container) {
     const createVideoElement = (video, thumbnail) => {

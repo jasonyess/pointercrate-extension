@@ -22,6 +22,12 @@
       "world": "MAIN"
     },
     {
+      "matches": ["https://pointercrate.com/demonlist/scorecalculator*"],
+      "js": ["dist/scorecalculator.bundle.js"],
+      "run_at": "document_end",
+      "world": "MAIN"
+    },
+    {
       "matches": ["https://pointercrate.com/*"],
       "js": ["js/index.js"],
       "run_at": "document_end",

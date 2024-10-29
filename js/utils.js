@@ -3,17 +3,19 @@ export function createPanel(name, text, heading = "h3") {
     newPanel.className = "panel fade"
     newPanel.style = "overflow: initial"
 
-    const panelName = document.createElement(heading)
-    panelName.className = "underlined"
-    panelName.textContent = name
+    if (name !== undefined) {
+        const panelName = document.createElement(heading)
+        panelName.className = (heading == "h1" || heading == "h2") ? "underlined pad" : "underlined"
+        panelName.textContent = name
+        newPanel.appendChild(panelName)
+    }
 
-    const panelText = document.createElement("p")
-    panelText.style = "font-size: .8em"
-    panelText.textContent = text
-
-    // Assemble the created elements
-    newPanel.appendChild(panelName)
-    newPanel.appendChild(panelText)
+    if (text !== undefined) {
+        const panelText = document.createElement("p")
+        panelText.style = "font-size: .8em"
+        panelText.textContent = text
+        newPanel.appendChild(panelText)
+    }
 
     return newPanel
 }
@@ -128,7 +130,9 @@ export function createDropdown(items, defaultIndex, id) {
 
 export function waitForObject(objectGetter, rate = 10) {
     const _exec = (resolve, reject) => {
-        if (objectGetter() !== undefined) {
+        let fetchedResult = objectGetter()
+        if (fetchedResult !== undefined && fetchedResult !== null) {
+            console.log(objectGetter())
             resolve()
         }
         else {
@@ -136,4 +140,105 @@ export function waitForObject(objectGetter, rate = 10) {
         }
     }
     return new Promise(_exec)
+}
+
+export function clearErrorFrame() {
+    document.getElementById("error").remove()
+}
+
+export function createMainContainer() {
+    const mainContainer = document.createElement("div")
+    mainContainer.className = "flex m-center container"
+
+    const contentContainer = document.createElement("main")
+    contentContainer.style = "max-width: 70%"
+
+    const sideContainer = document.createElement("aside")
+    sideContainer.style = "max-width: 30%"
+
+    // Panels for the side container
+    const brandPanel = createPanel("Pointercrate Pro", "This page is brought to you by Pointercrate Pro. Thank you for using the extension!", "h2")
+    
+    sideContainer.appendChild(brandPanel)
+
+    // Main container
+    mainContainer.appendChild(contentContainer)
+    mainContainer.appendChild(sideContainer)
+
+    return mainContainer
+}
+
+export function getScore(progress, position, requirement) {
+    if (progress == 100) {
+        if (55 < position && position <= 150) { // between 56 and 150
+            return 1.039035131 * ((185.7 * Math.exp((-0.02715 * position))) + 14.84)
+        }
+        else if (35 < position && position <= 55) { // between 36 and 55
+            return 1.0371139743 * ((212.61 * Math.pow(1.036, 1 - position)) + 25.071)
+        }
+        else if (20 < position && position <= 35) { // between 21 and 35
+            return (((250 - 83.389) * Math.pow(1.0099685, 2 - position) - 31.152)) * 1.0371139743
+        }
+        else if (3 < position && position <= 20) { // between 4 and 20
+            return ((326.1 * Math.exp((-0.0871 * position))) + 51.09) * 1.037117142
+        }
+        else { // between 1 and 3
+            return (-18.2899079915 * position) + 368.2899079915
+        }
+    }
+    else if (progress < requirement) {
+        return 0
+    }
+    else {
+        if (55 < position && position <= 150) { // between 56 and 150
+            return 1.039035131 * ((185.7 * Math.exp((-0.02715 * position))) + 14.84) * (Math.exp(Math.log(5) * (progress - requirement) / (100 - requirement))) / 10
+        }
+        else if (35 < position && position <= 55) { // between 36 and 55
+            return (1.0371139743 * ((212.61 * Math.pow(1.036, 1 - position)) + 25.071)) * (Math.exp(Math.log(5) * (progress - requirement) / (100 - requirement))) / 10
+        }
+        else if (20 < position && position <= 35) { // between 21 and 35
+            return (((250 - 83.389) * Math.pow(1.0099685, 2 - position) - 31.152)) * 1.0371139743 * (Math.exp(Math.log(5) * (progress - requirement) / (100 - requirement))) / 10
+        }
+        else if (3 < position && position <= 20) { // between 4 and 20
+            return (((326.1 * Math.exp((-0.0871 * position))) + 51.09) * 1.037117142) * (Math.exp(Math.log(5) * (progress - requirement) / (100 - requirement))) / 10
+        }
+        else { // between 1 and 3
+            return ((-18.2899079915 * position) + 368.2899079915) * (Math.exp(Math.log(5) * (progress - requirement) / (100 - requirement))) / 10
+        }
+    }
+}
+
+export function createInput(type, name, placeholder, details) { // the content of details varies depending on `type`
+    const inputWrapper = document.createElement("span")
+    inputWrapper.className = "form-input flex col"
+
+    const input = document.createElement("input")
+
+    input.type = type
+    input.name = name
+    input.placeholder = placeholder
+
+    if (input.type == "number") {
+        input.min = details.min
+        input.max = details.max
+    }
+
+    inputWrapper.appendChild(input)
+    return inputWrapper
+}
+
+export function createInfoBlock(name, text, id) {
+    const container = document.createElement("span")
+
+    const spanName = document.createElement("b")
+    spanName.textContent = name
+
+    const spanContent = document.createElement("span")
+    spanContent.id = id
+    spanContent.textContent = text
+
+    container.appendChild(spanName)
+    container.appendChild(document.createElement("br"))
+    container.appendChild(spanContent)
+    return container
 }
