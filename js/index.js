@@ -15,7 +15,16 @@ function editNavbar() {
     pendingDemonsAnchor.href = "https://pointercrate.com/demonlist/pending/"
     pendingDemonsListItem.appendChild(pendingDemonsAnchor)
 
+    // Score Calculator
+    const scoreCalcListItem = document.createElement("li")
+    const scoreCalcAnchor = document.createElement("a")
+    scoreCalcAnchor.className = "white hover"
+    scoreCalcAnchor.textContent = "Score Calculator"
+    scoreCalcAnchor.href = "https://pointercrate.com/demonlist/scorecalculator/"
+    scoreCalcListItem.appendChild(scoreCalcAnchor)
+
     demonlistDropdown.insertBefore(pendingDemonsListItem, demonlistDropdown.querySelector("a[href=\"/demonlist/?submitter=true\"]").parentElement)
+    demonlistDropdown.appendChild(scoreCalcListItem)
 }
 
 function main() {
