@@ -273,6 +273,7 @@ function createStatsViewerNavbar() {
 }
 
 function main() {
+    document.title = "Clan Stats Viewer"
     clearErrorFrame()
 
     createStatsViewerNavbar()
