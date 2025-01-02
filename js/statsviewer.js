@@ -1,4 +1,4 @@
-import { createPanel, createDropdown, waitForObject, createDemonNode } from "./utils.js"
+import { createPanel, createDropdown, waitForObject, createDemonNode, addStatsViewerTab } from "./utils.js"
 
 const sortingModes = [
     "Alphabetical",
@@ -91,6 +91,8 @@ function main() {
     const sortDropdownInput = document.querySelector("#demons-sort-dropdown").querySelector("input")
 
     statsViewer.addSelectionListener(() => individualSelectionListener(sortDropdownInput.value))
+
+    addStatsViewerTab("Clans", "/demonlist/statsviewer/clans/")
 }
 
 waitForObject(() => (window.statsViewer)).then(() => {

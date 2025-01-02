@@ -1,6 +1,9 @@
-import { clearErrorFrame, createMainContainer, createSelectionsList, createInfoGroup, createInfoBlock, createDemonNode, createSelectionListItem, getScore } from "./utils";
+import { clearErrorFrame, createMainContainer, createSelectionsList, createInfoGroup, createInfoBlock, createDemonNode, createSelectionListItem, getScore, addStatsViewerTab } from "./utils";
 
 function updateSelectedClan(clan, score, rank) {
+    document.getElementById("viewer-welcome").style = "display: none;"
+    document.getElementById("viewer-content").style = "display: block;"
+
     document.getElementById("clan-name").textContent = `[${clan}]`
     document.getElementById("clan-score").textContent = Number(score).toFixed(2)
     document.getElementById("clan-rank").textContent = rank
@@ -28,7 +31,7 @@ function updateSelectedClan(clan, score, rank) {
             data.forEach(player => {
                 const playerTooltip = document.createElement("span")
                 playerTooltip.style = "font-size: 90%;"
-                playerTooltip.textContent = player.name
+                playerTooltip.textContent = player.name.slice(clan.length + 2)
 
                 document.getElementById("players").appendChild(playerTooltip)
                 document.getElementById("players").innerHTML += " - "
@@ -75,8 +78,6 @@ function updateSelectedClan(clan, score, rank) {
                     }
                 })
             })
-
-            console.log("progres", progress)
 
             document.getElementById("clan-players").textContent = data.length
             document.getElementById("clan-stats").textContent = `${main} Main, ${extended} Extended, ${legacy} Legacy`
@@ -169,12 +170,14 @@ function createStatsViewerContent() {
 
     const welcome = document.createElement("p")
     welcome.className = "viewer-welcome"
+    welcome.id = "viewer-welcome"
     welcome.textContent = "Click on a clan's name on the left to get started!"
-    welcome.style = "display: none;"
+    welcome.style = "display: block;"
 
     const contentWrapper = document.createElement("div")
     contentWrapper.className = "viewer-content"
-    contentWrapper.style = "display: block;"
+    contentWrapper.id = "viewer-content"
+    contentWrapper.style = "display: none;"
 
     const contentContainer = document.createElement("div")
     contentContainer.className = "flex col"
@@ -260,8 +263,22 @@ function loadStatsViewer() {
     document.body.insertBefore(mainContainer, document.body.querySelector("footer"))
 }
 
+function createStatsViewerNavbar() {
+    const nav = document.createElement("nav")
+    nav.className = "flex wrap m-center fade"
+    nav.id = "statsviewers"
+    nav.style = "text-align: center;"
+
+    document.body.insertBefore(nav, document.body.querySelector("footer"))
+}
+
 function main() {
     clearErrorFrame()
+
+    createStatsViewerNavbar()
+    addStatsViewerTab("Individual", "/demonlist/statsviewer/")
+    addStatsViewerTab("Nations", "/demonlist/statsviewer/nations/")
+    addStatsViewerTab("Clans", "/demonlist/statsviewer/clans/")
 
     // fetch main list demons
         fetch("https://pointercrate.com/api/v2/demons/listed?limit=75")

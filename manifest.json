@@ -18,6 +18,12 @@
       "world": "MAIN"
     },
     {
+      "matches": ["https://pointercrate.com/demonlist/statsviewer/nations*"],
+      "js": ["dist/nationstatsviewer.bundle.js"],
+      "run_at": "document_end",
+      "world": "MAIN"
+    },
+    {
       "matches": ["https://pointercrate.com/demonlist/statsviewer/clans*"],
       "js": ["dist/clanstatsviewer.bundle.js"],
       "run_at": "document_end",

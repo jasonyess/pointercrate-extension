@@ -309,3 +309,15 @@ export function createSelectionListItem(bold, regular, small) {
 
     return listItem
 }
+
+export function addStatsViewerTab(name, href) {
+    const a = document.createElement("a")
+    a.className = "button white hover no-shadow"
+    a.href = href
+
+    const b = document.createElement("b")
+    b.textContent = name
+
+    a.appendChild(b)
+    document.getElementById("statsviewers").appendChild(a)
+}
