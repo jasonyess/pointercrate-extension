@@ -1,4 +1,4 @@
-import { createPanel, createDropdown, waitForObject } from "./utils.js"
+import { createPanel, createDropdown, waitForObject, createDemonNode } from "./utils.js"
 
 const sortingModes = [
     "Alphabetical",
@@ -25,26 +25,6 @@ function clearProfileDemons() {
         const categoryContainer = document.getElementById(category)
         categoryContainer.innerHTML = "" // clear all demon elements
     })
-}
-
-function createDemonNode(demon, video) {
-    let node = document.createElement(
-        demon.position <= 75 ? "b" // the demon is main list
-        : demon.position <= 150 ? "span" // the demon is extended list
-        : "i" // the demon is legacy
-    )
-
-    if (demon.position > 150) {
-        node.style = "opacity: 0.5"
-    }
-
-    let nodeLink = document.createElement("a")
-    nodeLink.href = video ?? `/demonlist/permalink/${demon.id}/`
-    nodeLink.textContent = demon.name
-
-    node.appendChild(nodeLink)
-
-    return node
 }
 
 // TODO: clean up this code

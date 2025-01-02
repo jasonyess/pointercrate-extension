@@ -235,10 +235,77 @@ export function createInfoBlock(name, text, id) {
 
     const spanContent = document.createElement("span")
     spanContent.id = id
-    spanContent.textContent = text
+    if (text) { spanContent.textContent = text }
 
     container.appendChild(spanName)
     container.appendChild(document.createElement("br"))
     container.appendChild(spanContent)
     return container
+}
+
+export function createInfoGroup(infoBlocks) {
+    const container = document.createElement("div")
+    container.className = "stats-container flex space"
+
+    infoBlocks.forEach(infoBlock => {
+        container.appendChild(infoBlock)
+    })
+
+    return container
+}
+
+export function createSelectionsList(id) {
+    const listWrapper = document.createElement("div")
+    listWrapper.id = id
+    listWrapper.style = "height: 600px; position: relative; flex-grow: 1;"
+
+    const selectionsList = document.createElement("ul")
+    selectionsList.className = "selection-list"
+    selectionsList.style = "border: 1px solid #999; margin: 10px 0; overflow-y: scroll; height: 100%;"
+
+    listWrapper.appendChild(selectionsList)
+    return listWrapper
+}
+
+export function createDemonNode(demon, video, progress) { // demon should be {position, id, name}
+    let node = document.createElement(
+        demon.position <= 75 ? "b" // the demon is main list
+        : demon.position <= 150 ? "span" // the demon is extended list
+        : "i" // the demon is legacy
+    )
+
+    if (demon.position > 150) {
+        node.style = "opacity: 0.5"
+    }
+
+    let nodeLink = document.createElement("a")
+    nodeLink.href = video ?? `/demonlist/permalink/${demon.id}/`
+    nodeLink.textContent = demon.name + (progress ? ` (${progress}%)` : "")
+
+    if (progress) {
+        console.log(demon, progress)
+    }
+
+    node.appendChild(nodeLink)
+
+    return node
+}
+
+export function createSelectionListItem(bold, regular, small) {
+    let listItem = document.createElement("li")
+    listItem.className = "white hover"
+
+    let boldText = document.createElement("b")
+    boldText.style = "pointer-events: none;"
+    boldText.textContent = bold
+
+    let smallText = document.createElement("i")
+    smallText.style = "color: #444; padding-left: 5px; font-size: 70%; font-variant: small-caps; pointer-events: none;"
+    smallText.textContent = small
+
+    listItem.appendChild(boldText)
+    listItem.innerHTML += regular
+    listItem.appendChild(smallText)
+
+    return listItem
 }

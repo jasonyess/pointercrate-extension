@@ -9,9 +9,17 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://pointercrate.com/demonlist/statsviewer*"],
-      "exclude_matches": ["https://pointercrate.com/demonlist/statsviewer/nations*"],
+      "matches": [
+        "https://pointercrate.com/demonlist/statsviewer",
+        "https://pointercrate.com/demonlist/statsviewer/"
+      ],
       "js": ["dist/statsviewer.bundle.js"],
+      "run_at": "document_end",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://pointercrate.com/demonlist/statsviewer/clans*"],
+      "js": ["dist/clanstatsviewer.bundle.js"],
       "run_at": "document_end",
       "world": "MAIN"
     },
@@ -34,7 +42,5 @@
       "world": "MAIN"
     }
   ],
-  "host_permissions": [
-    "https://pointercrate.com/*"
-  ]
+  "host_permissions": ["https://pointercrate.com/*"]
 }

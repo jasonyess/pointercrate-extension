@@ -1,4 +1,4 @@
-import { clearErrorFrame, createMainContainer, getScore, createPanel, createInput, waitForObject, createInfoBlock } from "./utils.js"
+import { clearErrorFrame, createMainContainer, getScore, createPanel, createInput, waitForObject, createInfoBlock, createSelectionsList, createSelectionListItem } from "./utils.js"
 
 function createDemonSelectionList(demons, onSelect) {
     const listWrapper = document.createElement("div")
@@ -9,21 +9,7 @@ function createDemonSelectionList(demons, onSelect) {
     selectionList.style = "position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;"
 
     demons.forEach(demon => {
-        let listItem = document.createElement("li")
-        listItem.className = "white hover"
-        listItem.setAttribute("data-id", demon.id)
-        listItem.setAttribute("data-position", demon.position)
-
-        let positionText = document.createElement("b")
-        positionText.textContent = `#${demon.position} `
-
-        let scoreText = document.createElement("i")
-        scoreText.style = "color: #444; padding-left: 5px; font-size: 70%; font-variant: small-caps;"
-        scoreText.textContent = getScore(100, demon.position, demon.requirement).toFixed(2)
-
-        listItem.appendChild(positionText)
-        listItem.innerHTML += demon.name
-        listItem.appendChild(scoreText)
+        let listItem = createSelectionListItem(`#${demon.position} `, demon.name, getScore(100, demon.position, demon.requirement).toFixed(2))
 
         listItem.addEventListener("click", () => {
             onSelect(demon)
@@ -128,18 +114,6 @@ function createDemonItem(demon, onProgressChange, onDelete) {
     demonItem.appendChild(controlsContainer)
 
     return demonItem
-}
-
-function createSelectionsList() {
-    const listWrapper = document.createElement("div")
-    listWrapper.id = "selected-demons"
-    listWrapper.style = "height: 600px; position: relative; flex-grow: 1;"
-
-    const selectionsList = document.createElement("ul")
-    selectionsList.style = "border: 1px solid #999; margin: 10px 0; overflow-y: scroll; height: 100%;"
-
-    listWrapper.appendChild(selectionsList)
-    return listWrapper
 }
 
 function createSelectionsResults() {
@@ -288,7 +262,7 @@ function createSelectionsContainer() {
     const container = document.createElement("div")
     container.style = "width: 65%; gap: 15px;"
 
-    const selectionsList = createSelectionsList()
+    const selectionsList = createSelectionsList("demons-container")
     const selectionsResults = createSelectionsResults()
 
     container.appendChild(selectionsList)
